@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6423802422500129691
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6423802422500129690}
+  - component: {fileID: 6423802422500129637}
+  m_Layer: 0
+  m_Name: DungeonAgent
+  m_TagString: DungeonManager
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6423802422500129690
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6423802422500129691}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6423802422500129637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6423802422500129691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b79a7ff2c0e7fbb438e071352a24b77f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currStartingPositon: {fileID: 0}
+  firstRoom: {fileID: 0}
+  lastAgentRoom: {fileID: 0}
+  rooms:
+  - {fileID: 7112864884546200523, guid: 14b3b1782964bf540b3398e4cabd66d6, type: 3}
+  - {fileID: 4524049536210260827, guid: b43acb5ff7d6ef34c9a2a07f2a3d1fca, type: 3}
+  - {fileID: 1864432184241338306, guid: 336a6e7124324ce42a3ccaf7081236c4, type: 3}
+  - {fileID: 1925402150639800258, guid: 65a9422b89399104eb2fcb350e41f425, type: 3}
+  roomDirection: 0
+  randStartingPos: 0
+  roomMoveAmount: 10
+  startTimeBetweenRoom: 0
+  minXLength: 0
+  maxXLength: 0
+  minYLength: 0
+  maxYLength: 0
+  stopGeneration: 0
+  upCounter: 0
+  downCounter: 0
+  leftCounter: 0
+  roomsLayer:
+    serializedVersion: 2
+    m_Bits: 512
