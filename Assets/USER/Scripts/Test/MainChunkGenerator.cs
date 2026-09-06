@@ -121,8 +121,8 @@ public class MainChunkGenerator : MonoBehaviour
     {
         for (var i = globalChunkParents[indexOfObject].transform.childCount - 1; i >= 0; i--)
         {
-            Object.Destroy(globalChunkParents[indexOfObject].transform.GetChild(i).gameObject);
-            Object.Destroy(globalChunkParents[indexOfObject].transform.gameObject);
+            Destroy(globalChunkParents[indexOfObject].transform.GetChild(i).gameObject);
+            Destroy(globalChunkParents[indexOfObject].transform.gameObject);
         }
     }
 }

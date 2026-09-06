@@ -53,7 +53,6 @@ public class CoreTile : MonoBehaviour
                 currBlockType = (TileType)3;
                 this.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
                 this.gameObject.GetComponent<BoxCollider2D>().size = new Vector2(1.0f, 1.0f);
-                this.gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(0.0f, -2.0f);
                 //13 is the GridCenter layer
                 this.gameObject.layer = 13;
                 //this.gameObject.GetComponent<BoxCollider>().enabled = false;
@@ -123,6 +122,7 @@ public class CoreTile : MonoBehaviour
 
         // Wait for a few moments & generate next chunk
         yield return new WaitForSecondsRealtime(1f);
+        gameObject.SetActive(false);
         MainChunkGenerator.mainChunkInstance.TriggerNextChunk();
     }
 }
