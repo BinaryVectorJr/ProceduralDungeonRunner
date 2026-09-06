@@ -48,10 +48,6 @@ public class CoreTile : MonoBehaviour
             currentChunksTileManager.centerPosition.Add(this.gameObject.transform);
             spriteRenderer.material.color = middleColor;
 
-            //transform.gameObject.AddComponent<SpawnSiderooms>();
-            //transform.gameObject.GetComponent<SpawnSiderooms>().currentChunkDungeonGenerator = GameObject.FindGameObjectWithTag("DungeonManager").GetComponent<DungeonGenerator>();
-            //gameObject.GetComponent<SpawnSiderooms>().canBeSideRoom = LayerMask.GetMask("Room");
-
             if (isCenter == true && checkCenter == true)
             {
                 currBlockType = (TileType)3;
@@ -63,14 +59,6 @@ public class CoreTile : MonoBehaviour
                 //this.gameObject.GetComponent<BoxCollider>().enabled = false;
             }
         }
-        
-
-        //if (block_x_loc % 5 == 0 && block_y_loc % 5 == 0)
-        //{
-        //    //Debug.Log("Center");
-        //    this.currBlockType = CoreTile.TileType.center;
-        //    spriteRenderer.material.color = middleColor;
-        //}
     }
 
     public void CheckEdge(bool isEdge)

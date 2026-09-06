@@ -94,19 +94,6 @@ public class TileManager : MonoBehaviour
             activeDungeonManager.GetComponent<DungeonGenerator>().InitiateDungeon(_chunkCount);
 
             readyForDungeon = false;
-
-            //if(readyForGates == true)
-            //{
-                //EnableSideRoomsAndGates(gridTiles);
-            //}
-
-            //foreach(Transform t in centerPosition)
-            //{
-            //    t.gameObject.AddComponent<SpawnSiderooms>();
-            //    t.gameObject.GetComponent<SpawnSiderooms>().currentChunkDungeonGenerator = dm.GetComponent<DungeonGenerator>();
-            //    t.gameObject.GetComponent<SpawnSiderooms>().canBeSideRoom = dm.GetComponent<DungeonGenerator>().roomsLayer;
-            //}
-            //readyForDungeon = false;
         }
         
     }
@@ -146,7 +133,7 @@ public class TileManager : MonoBehaviour
                 spawnedTile.transform.parent = parent.transform;
 
 
-                //Setting offset color for seat
+                //Setting offset color
                 var isOffset = (x % 2 == 0 && y % 2 != 0) || (x % 2 != 0 && y % 2 == 0);
                 spawnedTile.Init(isOffset);
 

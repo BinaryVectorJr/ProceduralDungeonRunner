@@ -38,19 +38,6 @@ public class MainChunkGenerator : MonoBehaviour
     {
         tileManagers.Add(Instantiate(tileManagerMainScript).gameObject);
         tileManagers[globalChunkCount].GetComponent<TileManager>().GenerateBase(startPos, globalChunkCount);
-        //globalChunkCount++;
-        //globalChunkCount = chunks[0].GetComponent<TileManager>().chunkCount;
-
-        //if(dungeonManagers.Count < 3)
-        //{
-        //    dungeonManagers[globalChunkCount].GetComponent<DungeonGenerator>().InitiateDungeon(globalChunkCount);
-        //}
-
-        //tilesDoneEvent.AddListener(NextChunkGenerate);
-
-
-
-
     }
 
     private void Update()
@@ -86,50 +73,28 @@ public class MainChunkGenerator : MonoBehaviour
 
     public void SpawnNextChunk()
     {
-        //if(globalChunkCount < 3)
-        //{
-        //    dungeonManagers[globalChunkCount].GetComponent<DungeonGenerator>().stopGeneration = false;
-        //}    
-
         Debug.Log("Spawning next chunk");
         nextSpawnPosition = nextSpawnPosition + new Vector2(5.0f, -5.0f);
         //TODO: Update Tile manager to this pos
         //TODO: Call Tile Managers generate base
-
-        //if(PlayerController collides with something)
-        //tilesDoneEvent.Invoke();
 
         NextChunkGenerate(globalChunkCount);
     }
 
     public void SpawnPlayer()
     {
-        //var playerGO = Instantiate(mainPlayerPrefab, startPos - new Vector2(4.0f, 0.0f), Quaternion.identity);
         var playerGO = Instantiate(mainPlayerPrefab, playerStartPos.position, Quaternion.identity);
         var cam = Instantiate(mainPlayerCam, new Vector3(playerStartPos.position.x, playerStartPos.position.y, -5.0f), Quaternion.identity);
         cam.transform.parent = playerGO.transform;
-
-        //tilesDoneEvent.RemoveAllListeners();
-
     }
 
     //Create Listener events here, so that we can subscribe to two events - chunk created and dungeons created. These will drive the main "sidescroller" part of the code
 
     public void NextChunkGenerate(int _nextChunkCount)
     {
-        //Replace 2 with max chunk count you want in one session
-        //if (globalChunkCount < maxSessionChunksCount)
-        //{
-            //chunks.Add(Instantiate(tileManagerMainScript).gameObject);
-            //tileManagers[0].GetComponent<TileManager>().transform.position = nextSpawnPosition;
-            //tileManagers[0].GetComponent<TileManager>().GenerateBase(nextSpawnPosition, _nextChunkCount);
-            //globalChunkCount++;
-
-            tileManagers.Add(Instantiate(tileManagerMainScript).gameObject);
-            tileManagers[globalChunkCount].GetComponent<TileManager>().transform.position = nextSpawnPosition;
-            tileManagers[globalChunkCount].GetComponent<TileManager>().GenerateBase(nextSpawnPosition, _nextChunkCount);
-
-        //globalChunkCount++;
+        tileManagers.Add(Instantiate(tileManagerMainScript).gameObject);
+        tileManagers[globalChunkCount].GetComponent<TileManager>().transform.position = nextSpawnPosition;
+        tileManagers[globalChunkCount].GetComponent<TileManager>().GenerateBase(nextSpawnPosition, _nextChunkCount);
 
         //TODO: set updated postition and Tile Manager for dungeon manager
         //}
