@@ -1,0 +1,4 @@
+﻿<Solution>
+  <Project Path="USER_Assy_Def.csproj" />
+  <Project Path="Assembly-CSharp.csproj" />
+</Solution>

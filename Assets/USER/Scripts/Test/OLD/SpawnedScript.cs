@@ -24,6 +24,6 @@ public class SpawnedScript : MonoBehaviour
             Destroy(gameObject);
         }
 
-        rb.velocity = Vector2.left * (speed + GameManagerA.gmInstance.speedMultiplier);
+        rb.linearVelocity = Vector2.left * (speed + GameManagerA.gmInstance.speedMultiplier);
     }
 }
