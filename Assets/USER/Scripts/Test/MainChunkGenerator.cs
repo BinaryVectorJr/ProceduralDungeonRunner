@@ -1,14 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class MainChunkGenerator : MonoBehaviour
 {
-    public static MainChunkGenerator mainChunkInstance;
+    public static MainChunkGenerator mainChunkInstance {get; private set; }
 
     public List<GameObject> globalChunkParents;
-
     public TileManager tileManagerMainScript;
     public DungeonGenerator currDungeonAgent;
 
@@ -31,38 +29,39 @@ public class MainChunkGenerator : MonoBehaviour
 
     private void Awake()
     {
-        mainChunkInstance = this;
+        if (mainChunkInstance != null && mainChunkInstance != this)
+        {
+            Destroy(this);   
+        }
+        else
+        {
+            mainChunkInstance = this;
+        }
     }
 
     private void Start()
     {
         tileManagers.Add(Instantiate(tileManagerMainScript).gameObject);
         tileManagers[globalChunkCount].GetComponent<TileManager>().GenerateBase(startPos, globalChunkCount);
+        SpawnPlayer();
     }
 
     private void Update()
     {
         globalChunkParents.RemoveAll(item => item == null);
+    }
 
-        //if(Input.GetKeyDown(KeyCode.T)) 
-        //Replace 2 with max session counts
-        if (currDungeonAgent.stopGeneration == true && globalChunkCount < maxSessionChunksCount)
+    public void SpawnPlayer()
+    {
+        StartCoroutine(SpawnDelay());
+        if (playerSpawned == false)
         {
-            //SpawnNextChunk();
-
-            if(globalChunkCount == 1)
-            {
-                StartCoroutine(SpawnDelay());
-                if (playerSpawned == false)
-                {
-                    SpawnPlayer();
-                    playerSpawned = true;
-                }
-                else if (playerSpawned == true)
-                {
-                    StopAllCoroutines();
-                }
-            }
+            InstantiatePlayer();
+            playerSpawned = true;
+        }
+        else if (playerSpawned == true)
+        {
+            StopAllCoroutines();
         }
     }
 
@@ -71,17 +70,7 @@ public class MainChunkGenerator : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
     }
 
-    public void SpawnNextChunk()
-    {
-        Debug.Log("Spawning next chunk");
-        nextSpawnPosition = nextSpawnPosition + new Vector2(5.0f, -5.0f);
-        //TODO: Update Tile manager to this pos
-        //TODO: Call Tile Managers generate base
-
-        NextChunkGenerate(globalChunkCount);
-    }
-
-    public void SpawnPlayer()
+    public void InstantiatePlayer()
     {
         var playerGO = Instantiate(mainPlayerPrefab, playerStartPos.position, Quaternion.identity);
         var cam = Instantiate(mainPlayerCam, new Vector3(playerStartPos.position.x, playerStartPos.position.y, -5.0f), Quaternion.identity);
@@ -89,21 +78,6 @@ public class MainChunkGenerator : MonoBehaviour
     }
 
     //Create Listener events here, so that we can subscribe to two events - chunk created and dungeons created. These will drive the main "sidescroller" part of the code
-
-    public void NextChunkGenerate(int _nextChunkCount)
-    {
-        tileManagers.Add(Instantiate(tileManagerMainScript).gameObject);
-        tileManagers[globalChunkCount].GetComponent<TileManager>().transform.position = nextSpawnPosition;
-        tileManagers[globalChunkCount].GetComponent<TileManager>().GenerateBase(nextSpawnPosition, _nextChunkCount);
-
-        //TODO: set updated postition and Tile Manager for dungeon manager
-        //}
-        //else
-        //{
-        //tilesDoneEvent.RemoveAllListeners();
-        //}
-    }
-
 
     public void TriggerNextChunk()
     {
@@ -117,6 +91,30 @@ public class MainChunkGenerator : MonoBehaviour
         Debug.Log("Generating next chunk");
         SpawnNextChunk();
 
+    }
+
+    public void SpawnNextChunk()
+    {
+        Debug.Log("Spawning next chunk");
+        nextSpawnPosition = nextSpawnPosition + new Vector2(5.0f, -5.0f);
+        //TODO: Update Tile manager to this pos
+        //TODO: Call Tile Managers generate base
+
+        NextChunkGenerate(globalChunkCount);
+    }
+
+    public void NextChunkGenerate(int _nextChunkCount)
+    {
+        tileManagers.Add(Instantiate(tileManagerMainScript).gameObject);
+        tileManagers[globalChunkCount].GetComponent<TileManager>().transform.position = nextSpawnPosition;
+        tileManagers[globalChunkCount].GetComponent<TileManager>().GenerateBase(nextSpawnPosition, _nextChunkCount);
+
+        //TODO: set updated postition and Tile Manager for dungeon manager
+        //}
+        //else
+        //{
+        //tilesDoneEvent.RemoveAllListeners();
+        //}
     }
 
     public void DestroyOldChunk(int indexOfObject)

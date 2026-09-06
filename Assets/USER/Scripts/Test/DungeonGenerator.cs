@@ -1,14 +1,8 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using TMPro;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class DungeonGenerator : MonoBehaviour
 {
-    //public static DungeonGenerator dungeonGeneratorInstance;
-
     public TileManager currentChunksTileManager;
 
     //Input edge detection algorithm here for start position generation
@@ -44,14 +38,7 @@ public class DungeonGenerator : MonoBehaviour
 
     private void Awake()
     {
-        //dungeonGeneratorInstance = this;
-        //randStartingPos = Random.Range(0, ChunkBehavior.chunkBehaviorInstance.startPositions.Count);
-        //randStartingPos = Random.Range(0, TileManager.tileManagerInstance.centerPosition.Count);
-        //transform.position = ChunkBehavior.chunkBehaviorInstance.startPositions[randStartingPos].position;
-        //transform.localPosition = TileManager.tileManagerInstance.centerPosition[0].position;
-
-        //Problem, chunks can only be square in size; FIX IT!!!
-        //roomMoveAmount = ChunkBehavior.chunkBehaviorInstance.chunkSize.x / 10;
+        
     }
 
     private void Start()

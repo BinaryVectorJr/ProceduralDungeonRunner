@@ -1,13 +1,9 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class TileManager : MonoBehaviour
 {
-    //public static TileManager tileManagerInstance;
-
     public CoreTile coreBlock;
 
     //Object Settings (1 by blocks are not being made)
@@ -52,10 +48,9 @@ public class TileManager : MonoBehaviour
     public List<float> rightBorderDistances = new List<float>();
 
 
-    // Start is called before the first frame update
-    void Awake()
+    private void Awake()
     {
-        //tileManagerInstance = this;
+        
     }
 
     private void Start()

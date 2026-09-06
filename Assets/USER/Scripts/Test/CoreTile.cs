@@ -118,8 +118,11 @@ public class CoreTile : MonoBehaviour
 
     IEnumerator TriggerDelay()
     {
-        yield return new WaitForSecondsRealtime(0.5f);
+        // Make sure to turn off the collider first since this was causing issues
+        gameObject.GetComponent<Collider2D>().enabled = false;
+
+        // Wait for a few moments & generate next chunk
+        yield return new WaitForSecondsRealtime(1f);
         MainChunkGenerator.mainChunkInstance.TriggerNextChunk();
-        this.gameObject.GetComponent<Collider2D>().enabled = false;
     }
 }
